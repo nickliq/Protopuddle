@@ -1,7 +1,7 @@
 package defpackage;
 
-import java.awt.Color;
-import javax.swing.JRadioButton;
+import javax.swing.*;
+import java.awt.*;
 
 /* renamed from: RadioButton  reason: default package */
 public class RadioButton extends JRadioButton {
@@ -9,7 +9,7 @@ public class RadioButton extends JRadioButton {
         setFont(Xf.font);
         setBackground(Color.BLACK);
         setForeground(Color.WHITE);
-        setBounds(Xf.up(x), Xf.up( y), Xf.up( width), Xf.up( height));
+        setBounds(Xf.up(x), Xf.up(y), Xf.up(width), Xf.up(height));
         setFocusPainted(false);
         setText(s);
     }

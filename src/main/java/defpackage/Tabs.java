@@ -1,13 +1,9 @@
 package defpackage;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.JTabbedPane;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 /* renamed from: Tabs  reason: default package */
 public class Tabs extends JTabbedPane {

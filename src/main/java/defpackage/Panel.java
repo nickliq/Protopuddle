@@ -1,10 +1,5 @@
 package defpackage;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
@@ -13,6 +8,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 /* renamed from: Panel  reason: default package */
 public class Panel extends JPanel {
@@ -447,31 +447,6 @@ public class Panel extends JPanel {
         table.getColumnModel().getColumn(col_index).setHeaderValue(new txtIcon(name, icon));
     }
 
-    /* renamed from: Panel$iconRenderer */
-    public static class iconRenderer extends DefaultTableCellRenderer {
-        public Component getTableCellRendererComponent(JTable table, Object obj, boolean isSelected, boolean hasFocus, int row, int column) {
-            txtIcon i = (txtIcon) obj;
-            if (obj == i) {
-                setIcon(i.imageIcon);
-                setText(i.txt);
-            }
-            setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-            setHorizontalAlignment(Panel.MAX_SPEED);
-            return this;
-        }
-    }
-
-    /* renamed from: Panel$txtIcon */
-    public static class txtIcon {
-        ImageIcon imageIcon;
-        String txt;
-
-        txtIcon(String text, ImageIcon icon) {
-            this.txt = text;
-            this.imageIcon = icon;
-        }
-    }
-
     public static void pauseSimulation() {
         String text = btnPause.getText();
         char c = 65535;
@@ -502,6 +477,31 @@ public class Panel extends JPanel {
                 return;
             default:
                 return;
+        }
+    }
+
+    /* renamed from: Panel$iconRenderer */
+    public static class iconRenderer extends DefaultTableCellRenderer {
+        public Component getTableCellRendererComponent(JTable table, Object obj, boolean isSelected, boolean hasFocus, int row, int column) {
+            txtIcon i = (txtIcon) obj;
+            if (obj == i) {
+                setIcon(i.imageIcon);
+                setText(i.txt);
+            }
+            setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+            setHorizontalAlignment(Panel.MAX_SPEED);
+            return this;
+        }
+    }
+
+    /* renamed from: Panel$txtIcon */
+    public static class txtIcon {
+        ImageIcon imageIcon;
+        String txt;
+
+        txtIcon(String text, ImageIcon icon) {
+            this.txt = text;
+            this.imageIcon = icon;
         }
     }
 }

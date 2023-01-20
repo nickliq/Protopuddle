@@ -1,11 +1,11 @@
 package defpackage;
 
+import javax.swing.*;
 import java.util.Random;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 /* renamed from: Cell  reason: default package */
 public class Cell {
+    public RotatedIcon picture;
     int activeGen;
     boolean cantBite;
     int causeOfDeath = 0;
@@ -26,7 +26,6 @@ public class Cell {
     int numberOfCildren = 0;
     int painSide;
     int painSideForTable;
-    public RotatedIcon picture;
     int selfPainSide;
     int stepsForDeath;
 

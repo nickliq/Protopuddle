@@ -1,18 +1,13 @@
 package defpackage;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Array;
 import java.util.Random;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.Timer;
 
 /* renamed from: GameField  reason: default package */
 public class GameField extends JPanel implements ActionListener {
@@ -213,45 +208,6 @@ public class GameField extends JPanel implements ActionListener {
             createPlant();
         }
         timer.start();
-    }
-
-    public void mouse() {
-        addMouseListener(new MouseListener() {
-            public void mouseClicked(MouseEvent e) {
-            }
-
-            public void mousePressed(MouseEvent e) {
-            }
-
-            public void mouseReleased(MouseEvent e) {
-                int i = e.getY() / 16;
-                int j = e.getX() / 16;
-                if (GameField.map[i][j] >= 0) {
-                    Panel.bGroup.clearSelection();
-                    GameField.cellForViewGen1 = GameField.cell[GameField.map[i][j]];
-                    Panel.labelSelectedCellIcon.setText("");
-                    Panel.labelSelectedCellIcon.setIcon(GameField.cell[GameField.map[i][j]].picture);
-                    Panel.labelSelectedCellNumber.setText("№: " + GameField.cell[GameField.map[i][j]].number);
-                    Panel.labelSelectedCellAge.setText("Age: " + (GameField.cell[GameField.map[i][j]].gen[6] - GameField.cell[GameField.map[i][j]].stepsForDeath));
-                    Panel.labelSelectedCellMaxAge.setText("Max Age: " + GameField.cell[GameField.map[i][j]].gen[6]);
-                    Panel.labelSelectedCellEnergy.setText("Energy: " + GameField.cell[GameField.map[i][j]].energy);
-                    Panel.labelSelectedCellEnergyForDivision.setText("Energy For Division: " + GameField.cell[GameField.map[i][j]].gen[4]);
-                    Panel.labelSelectedCellChanceOfMutation.setText("Chance Of Mutation: " + GameField.cell[GameField.map[i][j]].gen[5] + "%");
-                    Panel.labelSelectedCellKills.setText("Kills: " + GameField.cell[GameField.map[i][j]].kills);
-                    Panel.labelSelectedCellNumberOfChildren.setText("Children: " + GameField.cell[GameField.map[i][j]].numberOfCildren);
-                    Panel.labelSelectedCellEatenPlants.setText("Eaten Plants: " + GameField.cell[GameField.map[i][j]].eatenPlants);
-                    Panel.labelSelectedCellEatenMeat.setText("Eaten Meat: " + GameField.cell[GameField.map[i][j]].eatenMeat);
-                }
-                GameField.selectedCell();
-                GameField.this.repaint();
-            }
-
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            public void mouseExited(MouseEvent e) {
-            }
-        });
     }
 
     public static void selectedCell() {
@@ -527,6 +483,86 @@ public class GameField extends JPanel implements ActionListener {
         emptyCount = 0;
     }
 
+    public static void countCellsMeatPlants() {
+        int m = 0;
+        int p = 0;
+        for (int i = 0; i < mapHeight; i++) {
+            for (int j = 0; j < mapWidth; j++) {
+                if (map[i][j] >= 0) {
+                    int[] iArr = collorCount;
+                    int i2 = cell[map[i][j]].gen[1];
+                    iArr[i2] = iArr[i2] + 1;
+                }
+                if (map[i][j] == -2) {
+                    p++;
+                }
+                if (map[i][j] == -3) {
+                    m++;
+                }
+            }
+        }
+        Panel.labelPlantsNumber.setText(" - " + p);
+        Panel.labelMeatNumber.setText(" - " + m);
+        int max = 0;
+        int col = 0;
+        for (int i3 = 0; i3 < 10; i3++) {
+            for (int j2 = 0; j2 < 10; j2++) {
+                if (max < collorCount[j2]) {
+                    max = collorCount[j2];
+                    col = j2;
+                }
+            }
+            if (max > 0) {
+                Panel.labelColorCount[i3].setIcon(Panel.iiCol[col]);
+                Panel.labelColorCount[i3].setText(" - " + max);
+                collorCount[col] = 0;
+            } else {
+                Panel.labelColorCount[i3].setIcon((Icon) null);
+                Panel.labelColorCount[i3].setText("");
+            }
+            max = 0;
+        }
+    }
+
+    public void mouse() {
+        addMouseListener(new MouseListener() {
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            public void mousePressed(MouseEvent e) {
+            }
+
+            public void mouseReleased(MouseEvent e) {
+                int i = e.getY() / 16;
+                int j = e.getX() / 16;
+                if (GameField.map[i][j] >= 0) {
+                    Panel.bGroup.clearSelection();
+                    GameField.cellForViewGen1 = GameField.cell[GameField.map[i][j]];
+                    Panel.labelSelectedCellIcon.setText("");
+                    Panel.labelSelectedCellIcon.setIcon(GameField.cell[GameField.map[i][j]].picture);
+                    Panel.labelSelectedCellNumber.setText("№: " + GameField.cell[GameField.map[i][j]].number);
+                    Panel.labelSelectedCellAge.setText("Age: " + (GameField.cell[GameField.map[i][j]].gen[6] - GameField.cell[GameField.map[i][j]].stepsForDeath));
+                    Panel.labelSelectedCellMaxAge.setText("Max Age: " + GameField.cell[GameField.map[i][j]].gen[6]);
+                    Panel.labelSelectedCellEnergy.setText("Energy: " + GameField.cell[GameField.map[i][j]].energy);
+                    Panel.labelSelectedCellEnergyForDivision.setText("Energy For Division: " + GameField.cell[GameField.map[i][j]].gen[4]);
+                    Panel.labelSelectedCellChanceOfMutation.setText("Chance Of Mutation: " + GameField.cell[GameField.map[i][j]].gen[5] + "%");
+                    Panel.labelSelectedCellKills.setText("Kills: " + GameField.cell[GameField.map[i][j]].kills);
+                    Panel.labelSelectedCellNumberOfChildren.setText("Children: " + GameField.cell[GameField.map[i][j]].numberOfCildren);
+                    Panel.labelSelectedCellEatenPlants.setText("Eaten Plants: " + GameField.cell[GameField.map[i][j]].eatenPlants);
+                    Panel.labelSelectedCellEatenMeat.setText("Eaten Meat: " + GameField.cell[GameField.map[i][j]].eatenMeat);
+                }
+                GameField.selectedCell();
+                GameField.this.repaint();
+            }
+
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            public void mouseExited(MouseEvent e) {
+            }
+        });
+    }
+
     public void action() {
         if (liveNumber > 0) {
             for (int i = 0; i < numberOfCells; i++) {
@@ -590,47 +626,6 @@ public class GameField extends JPanel implements ActionListener {
         timer.stop();
     }
 
-    public static void countCellsMeatPlants() {
-        int m = 0;
-        int p = 0;
-        for (int i = 0; i < mapHeight; i++) {
-            for (int j = 0; j < mapWidth; j++) {
-                if (map[i][j] >= 0) {
-                    int[] iArr = collorCount;
-                    int i2 = cell[map[i][j]].gen[1];
-                    iArr[i2] = iArr[i2] + 1;
-                }
-                if (map[i][j] == -2) {
-                    p++;
-                }
-                if (map[i][j] == -3) {
-                    m++;
-                }
-            }
-        }
-        Panel.labelPlantsNumber.setText(" - " + p);
-        Panel.labelMeatNumber.setText(" - " + m);
-        int max = 0;
-        int col = 0;
-        for (int i3 = 0; i3 < 10; i3++) {
-            for (int j2 = 0; j2 < 10; j2++) {
-                if (max < collorCount[j2]) {
-                    max = collorCount[j2];
-                    col = j2;
-                }
-            }
-            if (max > 0) {
-                Panel.labelColorCount[i3].setIcon(Panel.iiCol[col]);
-                Panel.labelColorCount[i3].setText(" - " + max);
-                collorCount[col] = 0;
-            } else {
-                Panel.labelColorCount[i3].setIcon((Icon) null);
-                Panel.labelColorCount[i3].setText("");
-            }
-            max = 0;
-        }
-    }
-
     public void loadImages() {
         wall = new ImageIcon(GameField.class.getResource(Xf.dir("/wall.png"))).getImage();
         plant = new ImageIcon(GameField.class.getResource(Xf.dir("/plant.png"))).getImage();
@@ -667,18 +662,18 @@ public class GameField extends JPanel implements ActionListener {
                     g.drawImage(wall, j * Xf.up(16), i * Xf.up(16), this);
                 }
                 if (map[i][j] == -3 || map[i][j] == -6) {
-                    g.drawImage(meat, j * Xf.up(16), i * Xf.up( 16), this);
+                    g.drawImage(meat, j * Xf.up(16), i * Xf.up(16), this);
                 }
                 if (map[i][j] >= 0) {
-                    cell[map[i][j]].picture.paintIcon(this, g, j * Xf.up( 16), i * Xf.up( 16));
+                    cell[map[i][j]].picture.paintIcon(this, g, j * Xf.up(16), i * Xf.up(16));
                 }
                 if (map[i][j] == -2 || map[i][j] == -5) {
-                    g.drawImage(plant, j * Xf.up(16), i * Xf.up( 16), this);
+                    g.drawImage(plant, j * Xf.up(16), i * Xf.up(16), this);
                 }
             }
         }
         if (cellForViewGen1 != null && cellForViewGen1.energy > 0) {
-            g.drawImage(frame, (cellForViewGen1.coordX * Xf.up(16)) - 1, (cellForViewGen1.coordY * Xf.up( 16)) - 1, this);
+            g.drawImage(frame, (cellForViewGen1.coordX * Xf.up(16)) - 1, (cellForViewGen1.coordY * Xf.up(16)) - 1, this);
         }
     }
 

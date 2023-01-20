@@ -1,7 +1,7 @@
 package defpackage;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 /* renamed from: MainWindow  reason: default package */
 public class MainWindow extends JFrame {

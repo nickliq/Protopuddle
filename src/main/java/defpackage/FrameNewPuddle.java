@@ -1,18 +1,14 @@
 package defpackage;
 
-import java.awt.Color;
-import java.awt.Component;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JSlider;
-import javax.swing.border.LineBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /* renamed from: FrameNewPuddle  reason: default package */
 public class FrameNewPuddle extends JFrame {
@@ -22,11 +18,11 @@ public class FrameNewPuddle extends JFrame {
 
     public FrameNewPuddle() {
         setTitle("New Puddle");
-        setSize(Xf.up(300), Xf.up( 440));
+        setSize(Xf.up(300), Xf.up(440));
         getContentPane().setBackground(Color.BLACK);
         setLocation(500, 200);
         setResizable(false);
-        setLayout( null);
+        setLayout(null);
         setVisible(false);
         add(new Label("Number of live cells", 10, 10, 150, 20));
         final TextField tfNumberOfLiveCells = new TextField("10", 170, 10, 100, 20);
@@ -273,7 +269,7 @@ public class FrameNewPuddle extends JFrame {
         JSlider jSlider = new JSlider(0, 0, 10, 5);
         jSlider.setBackground(Color.BLACK);
         jSlider.setForeground(Color.WHITE);
-        jSlider.setBounds(Xf.up(170), Xf.up( 310), Xf.up( 100), Xf.up(25));
+        jSlider.setBounds(Xf.up(170), Xf.up(310), Xf.up(100), Xf.up(25));
         jSlider.setMajorTickSpacing(10);
         jSlider.setMinorTickSpacing(0);
         jSlider.setPaintLabels(true);
@@ -287,7 +283,7 @@ public class FrameNewPuddle extends JFrame {
         jButton.setBackground(Color.BLACK);
         jButton.setForeground(Color.WHITE);
         jButton.setBorder(new LineBorder(Color.WHITE));
-        jButton.setBounds(Xf.up(95), Xf.up( 360), Xf.up( 100), Xf.up( 30));
+        jButton.setBounds(Xf.up(95), Xf.up(360), Xf.up(100), Xf.up(30));
         jButton.setFocusPainted(false);
         add(jButton);
         final TextField textField6 = tfNumberOfLiveCells;

@@ -1,10 +1,7 @@
 package defpackage;
 
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import javax.swing.Icon;
+import javax.swing.*;
+import java.awt.*;
 
 /* renamed from: RotatedIcon  reason: default package */
 public class RotatedIcon implements Icon {
@@ -12,14 +9,6 @@ public class RotatedIcon implements Icon {
     private double degrees;
     private Icon icon;
     private Rotate rotate;
-
-    /* renamed from: RotatedIcon$Rotate */
-    public enum Rotate {
-        DOWN,
-        UP,
-        UPSIDE_DOWN,
-        ABOUT_CENTER
-    }
 
     public RotatedIcon(Icon icon2) {
         this(icon2, Rotate.UP);
@@ -97,7 +86,7 @@ public class RotatedIcon implements Icon {
     public void paintIcon(Component c, Graphics g, int x, int y) {
         int xAdjustment;
         int yAdjustment;
-        Graphics2D g2 = (Graphics2D)g.create();
+        Graphics2D g2 = (Graphics2D) g.create();
         int cWidth = this.icon.getIconWidth() / 2;
         int cHeight = this.icon.getIconHeight() / 2;
         if (this.icon.getIconWidth() % 2 == 0) {
@@ -130,5 +119,13 @@ public class RotatedIcon implements Icon {
             this.icon.paintIcon(c, g2, x, y);
         }
         g2.dispose();
+    }
+
+    /* renamed from: RotatedIcon$Rotate */
+    public enum Rotate {
+        DOWN,
+        UP,
+        UPSIDE_DOWN,
+        ABOUT_CENTER
     }
 }

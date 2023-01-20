@@ -1,7 +1,7 @@
 package defpackage;
 
+import javax.swing.*;
 import java.awt.*;
-import javax.swing.JTextField;
 
 /* renamed from: TextField  reason: default package */
 public class TextField extends JTextField {
@@ -12,6 +12,6 @@ public class TextField extends JTextField {
         setForeground(Color.WHITE);
         setCaretColor(Color.white);
         setCaretPosition(getText().length());
-        setBounds(Xf.up(x), Xf.up( y), Xf.up(width), Xf.up( height));
+        setBounds(Xf.up(x), Xf.up(y), Xf.up(width), Xf.up(height));
     }
 }

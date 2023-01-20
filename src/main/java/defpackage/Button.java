@@ -1,8 +1,8 @@
 package defpackage;
 
-import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import java.awt.*;
 
 /* renamed from: Button  reason: default package */
 public class Button extends JButton {

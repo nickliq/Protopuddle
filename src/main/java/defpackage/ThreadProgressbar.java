@@ -1,12 +1,12 @@
 package defpackage;
 
+import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-import javax.swing.SwingWorker;
 
 /* renamed from: ThreadProgressbar  reason: default package */
 public class ThreadProgressbar extends SwingWorker {
